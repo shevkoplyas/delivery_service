@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# To strat fresh - lets remove previously build stuff
+if [ -d ./target ]; then
+    echo "Removing previously build target/ folder"
+    rm -fr ./target
+fi
+
+echo "Maven compiling the project..."
+mvn compile
+RESULT_CODE=$?
+if [ $RESULT_CODE -ne 0 ]; then
+    exit $RESULT_CODE
+fi
+
+# Since it’s unlikely that you’ll want to distribute or work with .class files directly, you’ll probably want to run the package goal instead:
+mvn package
