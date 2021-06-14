@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# These are "common" settings for client and server:
+ROLE=client
+DIRECTORY=/run/shm/aeron_messaging_client
+SERVER_IPHOSTNAME=0.0.0.0 # to connect to
+SERVER_DATA_PORT=44000
+SERVER_CONTROL_PORT=44001
+
+# Run demo client
+java -jar target/delivery_service-0.1.0.jar ${ROLE} ${DIRECTORY} ${SERVER_IPHOSTNAME} ${SERVER_DATA_PORT} ${SERVER_CONTROL_PORT}
