@@ -2,8 +2,8 @@
 
 # These are "common" settings for client and server:
 ROLE=server
-DIRECTORY=/run/shm/aeron_messaging_server
-SERVER_IPHOSTNAME=0.0.0.0 # to bind to
+DIRECTORY=/run/shm/delivery_service_aeron_messaging_server
+SERVER_IPHOSTNAME=0.0.0.0 # to bind to public i-face (if don't want expose to public i-face, use 127.0.0.1, then only local clients will be able to connect (or via ssh-tunnel))
 SERVER_DATA_PORT=44000
 SERVER_CONTROL_PORT=44001
 
@@ -12,4 +12,11 @@ CLIENT_BASE_PORT=55000
 MAX_NUMBER_OF_CLIENTS=10
 
 # Run demo server
-java -jar target/delivery_service-0.1.0.jar ${ROLE} ${DIRECTORY} ${SERVER_IPHOSTNAME} ${SERVER_DATA_PORT} ${SERVER_CONTROL_PORT} ${CLIENT_BASE_PORT} ${MAX_NUMBER_OF_CLIENTS}
+java -jar target/delivery_service-0.1.0.jar \
+  ${ROLE} \
+  ${DIRECTORY} \
+  ${SERVER_IPHOSTNAME} \
+  ${SERVER_DATA_PORT} \
+  ${SERVER_CONTROL_PORT} \
+  ${CLIENT_BASE_PORT} \
+  ${MAX_NUMBER_OF_CLIENTS}

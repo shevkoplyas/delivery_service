@@ -215,6 +215,25 @@ public class DeliveryService extends Transportable {
 //        }
     }
 
+    /**
+     * <pre>
+     * When we create an instance of DeliveryService by calling static
+     * DeliveryService get_singleton_instance(configuration) we run either on
+     * the "server" side (note: there is only one "server", for example some
+     * "framework" or other "server" application) or on [remote] "client" side,
+     * and we want to connect "client" (one or many) to the "server", so all
+     * those remote clients have their own local "DeliveryService", which allows
+     * them to communicate between all "Transportable" instances inside client
+     * as well as to all other participants connected to the "server"
+     * DeliveryService.
+     *
+     * See also start_aeron_server()
+     * 
+     * </pre>
+     *
+     * @param aeron_client_configuration
+     * @throws Exception
+     */
     private void start_aeron_client(AeronMessagingClientConfiguration aeron_client_configuration)
             throws Exception {
 
@@ -226,13 +245,13 @@ public class DeliveryService extends Transportable {
         //
         // Main consumer loop (it uses aeron_messaging_server to send receive messages from the client(s))
         //
-//        while (true) {
-//            long received_messages_count = aeron_main_consumer_loop_iteration();
-//            if (received_messages_count == 0) {
-//              Thread.sleep(1);
-//            }
-//        }
-    }    
+        while (true) {
+            String incoming_private_message = aeron_messaging_client.get_private_message();
+            String incoming_public_message = aeron_messaging_client.get_all_clients_control_channel_message();
+        }
+
+    }
+
     //
     // ----------------------------------- AeronMessaging client/server (end) -----------------
     //

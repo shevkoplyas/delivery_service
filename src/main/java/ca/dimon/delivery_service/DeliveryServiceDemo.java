@@ -77,7 +77,7 @@ public class DeliveryServiceDemo {
         // args[6] - local_clients_base_port
         int local_clients_base_port = 0;
         int client_count = 0;
-        if (args.length == 6) {
+        if (args.length == 7) {
             local_clients_base_port = Integer.parseInt(args[5]); // client will use this port to open listening connection (aeron server -> aeron client)
             client_count = Integer.parseInt(args[6]);  // max number of allowed clients to be connected to the aeron server
         }

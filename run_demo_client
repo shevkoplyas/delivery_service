@@ -2,7 +2,7 @@
 
 # These are "common" settings for client and server:
 ROLE=client
-DIRECTORY=/run/shm/aeron_messaging_client
+DIRECTORY=/run/shm/delivery_service_aeron_messaging_client
 SERVER_IPHOSTNAME=0.0.0.0 # to connect to
 SERVER_DATA_PORT=44000
 SERVER_CONTROL_PORT=44001
